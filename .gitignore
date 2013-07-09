@@ -1,0 +1,7 @@
+*.hg/
+*.hgignore
+*.hgtags
+vim/.netrwhist
+*.git/
+vim/bundle/powerline/.local.vimrc
+vim/bundle/powerline/.travis.yml

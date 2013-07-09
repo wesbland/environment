@@ -1,0 +1,111 @@
+" General {
+    set background=dark             " Use dark background
+    colorscheme murphy              " Use the murphy color scheme
+    filetype plugin indent on       " Automatically detect file types and turn on indentation
+    syntax on                       " Syntax highlighting
+    set mouse=a                     " Enable mouse usage
+    set virtualedit=onemore         " Allow cursor to go beyond last character
+    set history=1000                " Larger history
+
+"    set backup                      " Turn on backups
+"    set backupdir=$HOME/.vimbackup// " Directory to store backup files
+"    set directory=$HOME/.vimswap//  " Store swap files somewhere else
+"    set viewdir=$HOME/.vimviews//   " Store view files somewhere else
+
+    "" Create directories if they don't exist
+"    silent execute '!mkdir -p $HOME/.vimbackup'
+"    silent execute '!mkdir -p $HOME/.vimswap'
+"    silent execute '!mkdir -p $HOME/.vimviews'
+"    au BufWinLeave * silent! mkview     " Make vim save view (state) (folds, cursor, etc)
+"    au BufWinEnter * silent! loadview   " Make vim loadview (state) (folds, cursor, etc)
+
+    " Turn on the pathogen magic
+    execute pathogen#infect()
+" }
+
+" UI {
+    set showmode                    " Display the current mode
+
+"    if has('cmdline_info')
+"        set ruler                   " Show the ruler
+"        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+"        set showcmd                 " Show partial commands in status line and
+"                                    " selected characters/lines in visual mode
+"    endif
+
+    " Turn on powerline
+    set laststatus=2
+    let g:Powerline_symbols = 'fancy'
+    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+    set backspace=indent,eol,start  " Better backspace
+"    set nu                 " Line numbers on
+    set showmatch           " Show matching brackets/parenthesis
+    set incsearch           " Find as you type search
+    set hlsearch            " Highlight search terms
+    set winminheight=0      " Windows can be 0 lines 0
+    set ignorecase          " Case insensitive search
+    set smartcase           " Case sensitive when uc present
+    set wildmenu            " Show list instead of just completing
+    set wildmode=list:longest,full  " Command <Tab> completion, list matches,
+                                    " then longest common part, then all
+    set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap to
+    set scrolljump=5        " Lines to scroll when cursor leaves the screen
+    set scrolloff=3         " Minimum lines to keep above and below cursor
+    set guifont=Menlo\ Regular\ for\ Powerline:h12
+" }
+
+" Formatting {
+    set nowrap              " Wrap long lines
+    set tw=78               " Automatically wrap long lines at 78 characters
+    set autoindent          " Indent at the same level as the previous lines
+    set shiftwidth=4        " Use indents of 4 spaces
+    set expandtab           " Tabs are spaces, not tabs
+    set tabstop=4           " Indent every 4 coloms
+    set smarttab
+    set softtabstop=4       " Let backspace delete indent
+    set pastetoggle=<F10>   " Sane indentation on pastes
+    set comments=s1:/*,mb:*,elx:*/  " Auto format comment blocks
+    set list listchars=tab:\>>      " Show the indent characters so I don't screw up existing formatting
+    " Remove trailing whitespace and ^M chars
+    " I had to turn this off because it would drive MPICH people crazy
+    "autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+" }
+
+" Key Mappings {
+    " Make ; work like : for commands
+    nnoremap ; :
+
+    " Easier moving in tabs and windows
+    map <C-J> <C-W>j<C-W>_
+    map <C-K> <C-W>k<C-W>_
+    map <C-L> <C-W>l<C-W>_
+    map <C-H> <C-W>h<C-W>_
+
+    " Clearing highlighted search
+    nmap <silent> <leader>/ :nohlsearch<CR>
+
+    " Change current working directory to that of the current file
+    cmap cwd lcd %:p:h
+    cmap cd. lcd %:p:h
+
+    " Visual shifting (doesn't exit visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " For when you forget to sudo, really write the file
+    cmap w!! w !sudo tee % >/dev/null
+
+    " Shortcuts for saving and closing
+    map W  :wq<CR>
+    map Q  :q<CR>
+
+    " Update and reset the cscope tags
+    nmap <leader>c :update_cscope<CR>
+        \:cs reset<CR>
+
+    " Open man pages in splits instead of covering the window
+    let $GROFF_NO_SGR=1
+    source $VIMRUNTIME/ftplugin/man.vim
+    nmap K :Man <cword><CR>
+" }

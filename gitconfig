@@ -1,0 +1,32 @@
+[user]
+	name = Wesley Bland
+	email = wbland@mcs.anl.gov
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+
+# optional, but helps to distinguish between
+# changed and untracked files
+[color "status"]
+    added = green
+    changed = red
+    untracked = magenta
+
+# optional, but allows git to create 8-character abbreviated hashes, that are "trac-compatible" for automatic link generation in the comments.
+[core]
+    whitespace = trailing-space,space-before-tab,indent-with-tab
+    abbrev = 8
+	excludesfile = /Users/wbland/.gitignore_global
+
+# optional, but allows better view of commits
+[alias]
+    graph = log --graph --decorate --abbrev-commit --pretty=oneline
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

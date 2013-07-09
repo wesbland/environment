@@ -1,0 +1,12 @@
+[annotate]
+ignorews = True
+
+[email]
+from = wbland@mcs.anl.gov
+
+[ui]
+username = Wesley Bland <wbland@mcs.anl.gov>
+
+[extensions]
+rebase = 
+purge =
