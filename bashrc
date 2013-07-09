@@ -1,7 +1,11 @@
 export PAGER=less
 export TERM=$TERM
 alias list="ls -latrh --color"  
-alias ls="ls -G --color"
+if [ "$(uname)" == "Darwin" ]; then
+    alias ls="ls -G"
+elif [ "$(uname)" == "Linux" ]; then
+    alias ls="ls --color"
+fi
 alias mv="mv -i" 
 alias cp="cp -i" 
 #alias vi="vim"
