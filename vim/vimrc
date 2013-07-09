@@ -20,6 +20,8 @@
 "    au BufWinEnter * silent! loadview   " Make vim loadview (state) (folds, cursor, etc)
 
     " Turn on the pathogen magic
+    set nocp
+    set rtp+=~/.vim/autoload
     execute pathogen#infect()
 " }
 
