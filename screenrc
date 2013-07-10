@@ -1,0 +1,42 @@
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{b r}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n:%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %l %{g}][%{B} %m-%d %{W}%c %{g}]' # Concise and informative
+caption splitonly
+caption string "%{= k}%?%F%{.B.}%?%{G}%n:%t" # Recognize your splits
+defscrollback 10000 # How far to scrollback in copy mode
+escape ^@` #` I think CTRL+SPACE is pretty effective
+bindkey "^[Od" prev  # change window with ctrl-left
+bindkey "^[Oc" next  # change window with ctrl-right
+activity              "activity in %n (%t) [%w:%s]~"
+sorendition kG # black on bold green
+vbell off # Turn off the visual bell
+termcapinfo xterm* ti@:te@ # Enable scrollback
+startup_message off     # no way
+autodetach on           # Never, ever turn this off.
+#zombie cr               # Keep dead windows around until I tell them to exit.
+verbose on              # And show the command for the windows when they're resurrected.
+altscreen on            # restore window contents after using (e.g.) vi
+#attrcolor b ".I"        # allow bold colors - necessary for some reason
+#blankerprg cmatrix -ab -u9  # Screensaver
+#idle 360 blanker # timeout for screensaver
+bind c screen 1 # start numbering windows at 1, not 0
+bind ^c screen 1
+bind 0 select 10
+screen 1
+# Set F-keys to select windows
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+bindkey -k k9 select 9
+bindkey -k k; select 10
+bindkey -k F1 select 11
+bindkey -k F2 select 12
+# Use the arrow keys to switch windows
+#bindkey -k kr next
+#bindkey -k kl prev
+# Launch a screen with top by (ACT,CTRL+T)
+bind ^t screen -t 'TOP' sh -c 'exec nice /usr/bin/top'
