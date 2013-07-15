@@ -16,20 +16,21 @@ export EDITOR="vim"
 
 ulimit -c unlimited
 
-alias sshdesk="ssh bertuzzi.mcs.anl.gov"
-alias sshvm="ssh localhost -p 31337"
+if [ "$(hostname -s)" == "wbland" ]; then
+    alias sshvm="ssh localhost -p 31337"
+    export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$HOME/tools/bin:$PATH
+    alias gvim="mvim"
 
-export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$HOME/tools/bin:$PATH
+    # Mount LRDS development directory on virtual machine
+    alias mount_lrds='sshfs -p 31337 localhost:/home/wbland/Repositories/lrds ~/Repositories/lrds'
+
+    # Start virtual machine for LRDS development
+    alias start_vm='VBoxHeadless -s Ubuntu'
+fi
+
+alias update_cscope="cd $HOME/Repositories/ ; cscope -R -b -f $HOME/.cscope.out  ; cd - > /dev/null"
 
 export CSCOPE_DB=$HOME/.cscope.out
 
-alias update_cscope='cd /Users/wbland/Repositories/ ; cscope -R -b -f /Users/wbland/.cscope.out  ; cd - > /dev/null'
-
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
-
-# Mount LRDS development directory on virtual machine
-alias mount_lrds='sshfs -p 31337 localhost:/home/wbland/Repositories/lrds ~/Repositories/lrds'
-
-# Start virtual machine for LRDS development
-alias start_vm='VBoxHeadless -s Ubuntu'
