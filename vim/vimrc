@@ -23,6 +23,9 @@
     set nocp
     set rtp+=~/.vim/autoload
     execute pathogen#infect()
+
+    " Set VIM to default to latex for *.tex files
+    let g:tex_flavor='latex'
 " }
 
 " UI {
