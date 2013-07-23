@@ -26,6 +26,8 @@ if [ "$(uname)" == "Darwin" ]; then
 
     # Start virtual machine for LRDS development
     alias start_vm='VBoxHeadless -s Ubuntu'
+else
+    export PATH=$HOME/tools/bin:$PATH
 fi
 
 alias update_cscope="cd $HOME/Repositories/ ; cscope -R -b -f $HOME/.cscope.out  ; cd - > /dev/null"
