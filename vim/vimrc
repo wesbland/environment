@@ -1,6 +1,6 @@
 " General {
-    set background=dark             " Use dark background
-    colorscheme murphy              " Use the murphy color scheme
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    colorscheme desert              " Use the desert color scheme
     filetype plugin indent on       " Automatically detect file types and turn on indentation
     syntax on                       " Syntax highlighting
     set mouse=a                     " Enable mouse usage
@@ -75,6 +75,16 @@
     " Remove trailing whitespace and ^M chars
     " I had to turn this off because it would drive MPICH people crazy
     "autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+    " Highlight trailing whitespace in red
+    " Have this highlighting not appear while in insert mode
+    " Have the highlighting of whitespace apply when new buffers are opened
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
 " }
 
 " Key Mappings {
