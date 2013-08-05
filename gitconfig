@@ -1,6 +1,6 @@
 [user]
-	name = Wesley Bland
-	email = wbland@mcs.anl.gov
+    name = Wesley Bland
+    email = wbland@mcs.anl.gov
 
 [color]
     diff = auto
@@ -19,7 +19,7 @@
 [core]
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 8
-	excludesfile = /Users/wbland/.gitignore_global
+    excludesfile = /Users/wbland/.gitignore_global
 
 # optional, but allows better view of commits
 [alias]
@@ -30,3 +30,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = simple
