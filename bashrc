@@ -16,7 +16,7 @@ export EDITOR="vim"
 
 ulimit -c unlimited
 
-if [ "$(hostname -s)" == "wbland" ]; then
+if [ "$(uname)" == "Darwin" ]; then
     alias sshvm="ssh localhost -p 31337"
     export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$HOME/tools/bin:$PATH
     alias gvim="mvim"
@@ -31,6 +31,8 @@ fi
 alias update_cscope="cd $HOME/Repositories/ ; cscope -R -b -f $HOME/.cscope.out  ; cd - > /dev/null"
 
 export CSCOPE_DB=$HOME/.cscope.out
+
+export C_INCLUDE_PATH=$HOME/tools/include
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
