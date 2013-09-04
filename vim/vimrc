@@ -38,13 +38,17 @@
 "                                    " selected characters/lines in visual mode
 "    endif
 
-    " Turn on powerline
+    " Turn on airline
     set laststatus=2
-    let g:Powerline_symbols = 'fancy'
-    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+    let g:airline_powerline_fonts=1 " Turn on powerline fonts for airline
+    let g:airline#extensions#whitespace#enabled=0 " Turn of the mixed indent section
+    let g:airline#extensions#whitespace#trailing_format='t[%s]' " Shorten the mixed indent section
+    let g:airline#extensions#whitespace#mixed_indent_format='m[%s]' " Shorten the mixed indent section
+    let g:airline_section_y='' " Turn off the section with the encoding
+
 
     set backspace=indent,eol,start  " Better backspace
-"    set nu                 " Line numbers on
+    set nu                 " Line numbers on
     set showmatch           " Show matching brackets/parenthesis
     set incsearch           " Find as you type search
     set hlsearch            " Highlight search terms

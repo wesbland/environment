@@ -30,7 +30,11 @@ else
     export PATH=$HOME/tools/bin:$PATH
 fi
 
-alias update_cscope="cd $HOME/Repositories/ ; cscope -R -b -f $HOME/.cscope.out  ; cd - > /dev/null"
+alias update_cscope="find $HOME/Repositories \
+    \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk \) -prune \) \
+        -o \( -name *.h -o -name *.c -o -name *.in -o -name *.cpp \) -print > cscope.files ; \
+    cscope -R -b -f $HOME/.cscope.out ; \
+    rm -f cscope.files"
 
 export CSCOPE_DB=$HOME/.cscope.out
 
