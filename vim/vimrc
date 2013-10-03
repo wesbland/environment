@@ -1,6 +1,12 @@
 " General {
+    " Turn on the pathogen magic
+    set nocp
+    set rtp+=~/.vim/autoload
+    execute pathogen#infect()
+
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    colorscheme desert              " Use the desert color scheme
+    set background=dark             " Use a dark background
+    colorscheme solarized           " Use the desert color scheme
     filetype plugin indent on       " Automatically detect file types and turn on indentation
     syntax on                       " Syntax highlighting
     set mouse=a                     " Enable mouse usage
@@ -18,11 +24,6 @@
 "    silent execute '!mkdir -p $HOME/.vimviews'
 "    au BufWinLeave * silent! mkview     " Make vim save view (state) (folds, cursor, etc)
 "    au BufWinEnter * silent! loadview   " Make vim loadview (state) (folds, cursor, etc)
-
-    " Turn on the pathogen magic
-    set nocp
-    set rtp+=~/.vim/autoload
-    execute pathogen#infect()
 
     " Set VIM to default to latex for *.tex files
     let g:tex_flavor='latex'

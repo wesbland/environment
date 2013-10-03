@@ -6,3 +6,7 @@ HPC
 runtimes
 checkpointing
 MPI
+API
+CAF
+SPMD
+RMA
