@@ -32,7 +32,7 @@ fi
 
 alias update_cscope="find $HOME/Repositories \
     \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk \) -prune \) \
-        -o \( -name *.h -o -name *.c -o -name *.in -o -name *.cpp \) -print > cscope.files ; \
+        -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.cpp \) -print > cscope.files ; \
     cscope -R -b -f $HOME/.cscope.out ; \
     rm -f cscope.files"
 
@@ -44,14 +44,15 @@ export MANPATH=$HOME/tools/share/man:$MANPATH
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
+alias mpich_debug_off='export MPICH_DBG_FILENAME="" ; export MPICH_DBG_CLASS= ; export MPICH_DBG_LEVEL='
 
 alias config_mpich="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
-                    --prefix=$HOME/tools \
-                    --enable-g \
-                    --disable-romio \
-                    --enable-debuginfo \
-                    --enable-threads=runtime \
-                    --disable-silent-rules \
-                    --enable-maintainer-mode \
-                    --enable-strict \
-                    --enable-coverage"
+    --prefix=$HOME/tools \
+    --enable-g \
+    --disable-romio \
+    --enable-debuginfo \
+    --enable-threads=runtime \
+    --disable-silent-rules \
+    --enable-maintainer-mode \
+    --enable-strict \
+    --enable-coverage"
