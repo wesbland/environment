@@ -5,8 +5,15 @@
     execute pathogen#infect()
 
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    set background=dark             " Use a dark background
-    colorscheme solarized           " Use the desert color scheme
+    let hr = str2nr(strftime('%H'))
+    if hr <= 7
+        set bg=dark
+    elseif hr <= 18
+        set bg=light
+    else
+        set bg=dark
+    endif
+    colorscheme solarized           " Use the solarized color scheme
     filetype plugin indent on       " Automatically detect file types and turn on indentation
     syntax on                       " Syntax highlighting
     set mouse=a                     " Enable mouse usage
