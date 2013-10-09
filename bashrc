@@ -46,7 +46,7 @@ export MANPATH=$HOME/tools/share/man:$MANPATH
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
 alias mpich_debug_off='export MPICH_DBG_FILENAME="" ; export MPICH_DBG_CLASS= ; export MPICH_DBG_LEVEL='
 
-alias config_mpich="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
+alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
     --enable-g \
     --disable-romio \
@@ -56,3 +56,12 @@ alias config_mpich="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --enable-maintainer-mode \
     --enable-strict \
     --enable-coverage"
+
+alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
+    --prefix=$HOME/tools \
+    --disable-romio \
+    --enable-threads=runtime \
+    --enable-strict \
+    --enable-fast \
+    --disable-f77 \
+    --disable-fc"
