@@ -28,6 +28,9 @@
 " when it was compiled.  If it wasn't, time to recompile vim... 
 if has("cscope")
 
+    " show msg when any other cscope db added
+    set nocscopeverbose  
+
     """"""""""""" Standard cscope/vim boilerplate
 
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
@@ -44,9 +47,6 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB $HOME/Repositories
     endif
-
-    " show msg when any other cscope db added
-    set cscopeverbose  
 
 
     """"""""""""" My cscope/vim key mappings
