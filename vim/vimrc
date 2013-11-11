@@ -6,9 +6,9 @@
 
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     let hr = str2nr(strftime('%H'))
-    if hr <= 7
+    if hr <= 6
         set bg=dark
-    elseif hr <= 18
+    elseif hr <= 17
         set bg=light
     else
         set bg=dark
