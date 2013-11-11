@@ -6,9 +6,6 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(uname)" == "Linux" ]; then
     alias ls="ls --color"
 fi
-alias mv="mv -i"
-alias cp="cp -i"
-#alias vi="vim"
 
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
@@ -18,7 +15,7 @@ ulimit -c unlimited
 
 if [ "$(uname)" == "Darwin" ]; then
     alias sshvm="ssh localhost -p 31337"
-    export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$HOME/tools/bin:$PATH
+    export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$PATH
     alias gvim="mvim"
 
     # Mount LRDS development directory on virtual machine
@@ -27,7 +24,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # Start virtual machine for LRDS development
     alias start_vm='VBoxHeadless -s Ubuntu'
 else
-    export PATH=$HOME/tools/bin:$PATH
+    
 fi
 
 alias update_cscope="find $HOME/Repositories \
@@ -38,9 +35,10 @@ alias update_cscope="find $HOME/Repositories \
 
 export CSCOPE_DB=$HOME/.cscope.out
 
-export C_INCLUDE_PATH=$HOME/tools/include:$C_INCLUDE_PATH
+export PATH=$HOME/tools/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/tools/lib:$LD_LIBRARY_PATH
 export MANPATH=$HOME/tools/share/man:$MANPATH
+export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
