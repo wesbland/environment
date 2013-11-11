@@ -42,20 +42,21 @@ export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
-alias mpich_debug_off='export MPICH_DBG_FILENAME="" ; export MPICH_DBG_CLASS= ; export MPICH_DBG_LEVEL='
+alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset MPICH_DBG_LEVEL'
 
-alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
+alias config_mpich_debug="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=gfortran CFLAGS=-O0 \
     --prefix=$HOME/tools \
-    --enable-g \
+    --enable-g=all \
+    --enable-timing=all \
+    --disable-fast \
     --disable-romio \
     --enable-debuginfo \
     --enable-threads=runtime \
     --disable-silent-rules \
     --enable-maintainer-mode \
-    --enable-strict \
-    --enable-coverage"
+    --disable-strict"
 
-alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
+alias config_mpich_fast="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
     --disable-romio \
     --enable-threads=runtime \
