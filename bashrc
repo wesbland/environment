@@ -23,8 +23,13 @@ if [ "$(uname)" == "Darwin" ]; then
 
     # Start virtual machine for LRDS development
     alias start_vm='VBoxHeadless -s Ubuntu'
-else
-    
+
+    export TEXTFILTER_PATH=$HOME/tools/share/doctext
+    export DOCTEXT_PATH=$HOME/tools/share/doctext
+
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
 fi
 
 alias update_cscope="find $HOME/Repositories \
