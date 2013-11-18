@@ -44,6 +44,7 @@ export PATH=$HOME/tools/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/tools/lib:$LD_LIBRARY_PATH
 export MANPATH=$HOME/tools/share/man:$MANPATH
 export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
+export DOCTEXT_PATH=$HOME/tools/share
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
