@@ -30,6 +30,10 @@ if [ "$(uname)" == "Darwin" ]; then
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
     fi
+
+    # todo.txt stuff
+    alias t="todo.sh"
+    export TODOTXT_DEFAULT_ACTION=ls
 fi
 
 alias update_cscope="find $HOME/Repositories \
@@ -50,7 +54,7 @@ export DOCTEXT_PATH=$HOME/tools/share
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
 alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset MPICH_DBG_LEVEL'
 
-alias config_mpich_debug="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=gfortran CFLAGS=-O0 \
+alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CFLAGS=-O0 \
     --prefix=$HOME/tools \
     --enable-g=all \
     --enable-timing=all \
@@ -62,7 +66,7 @@ alias config_mpich_debug="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=g
     --enable-maintainer-mode \
     --disable-strict"
 
-alias config_mpich_fast="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=gfortran \
+alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
     --disable-romio \
     --enable-threads=runtime \
@@ -70,3 +74,5 @@ alias config_mpich_fast="./configure CC=llvm-gcc CXX=llvm-g++ FC=gfortran F77=gf
     --enable-fast \
     --disable-f77 \
     --disable-fc"
+
+export MPIR_CVAR_CH3_NOLOCAL=1 # Turn off if you want to try shared memory in MPICH
