@@ -34,6 +34,8 @@ if [ "$(uname)" == "Darwin" ]; then
     # todo.txt stuff
     alias t="todo.sh"
     export TODOTXT_DEFAULT_ACTION=ls
+else
+    source $HOME/tools/share/autoScreen
 fi
 
 alias update_cscope="find $HOME/Repositories \
