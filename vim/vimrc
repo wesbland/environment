@@ -4,6 +4,7 @@
     set rtp+=~/.vim/autoload
     execute pathogen#infect()
 
+    set t_Co=256
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     let hr = str2nr(strftime('%H'))
     if hr <= 6
