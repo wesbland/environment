@@ -7,6 +7,16 @@ elif [ "$(uname)" == "Linux" ]; then
     alias ls="ls --color"
 fi
 
+export PATH=$HOME/tools/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/tools/lib:$LD_LIBRARY_PATH
+export MANPATH=$HOME/tools/share/man:$MANPATH
+export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
+export DOCTEXT_PATH=$HOME/tools/share
+
+if [ -z "$PS1" ]; then
+    return
+fi
+
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
 export EDITOR="vim"
@@ -45,12 +55,6 @@ alias update_cscope="find $HOME/Repositories \
     rm -f cscope.files"
 
 export CSCOPE_DB=$HOME/.cscope.out
-
-export PATH=$HOME/tools/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/tools/lib:$LD_LIBRARY_PATH
-export MANPATH=$HOME/tools/share/man:$MANPATH
-export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
-export DOCTEXT_PATH=$HOME/tools/share
 
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'

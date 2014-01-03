@@ -7,13 +7,7 @@
     set t_Co=256
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     let hr = str2nr(strftime('%H'))
-    if hr <= 6
-        set bg=dark
-    elseif hr <= 17
-        set bg=light
-    else
-        set bg=dark
-    endif
+    set bg=dark
     colorscheme solarized           " Use the solarized color scheme
     filetype plugin indent on       " Automatically detect file types and turn on indentation
     syntax on                       " Syntax highlighting
