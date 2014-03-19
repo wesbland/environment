@@ -1,15 +1,55 @@
 " General {
-    " Turn on the pathogen magic
-    set nocp
-    set rtp+=~/.vim/autoload
-    execute pathogen#infect()
+    " Turn on Vundle magic
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    " alternatively, pass a path where Vundle should install bundles
+    "let path = '~/some/path/here'
+    "call vundle#rc(path)
+
+    " let Vundle manage Vundle, required
+    Bundle 'gmarik/vundle'
+
+    " The following are examples of different formats supported.
+    " Keep bundle commands between here and filetype plugin indent on.
+    " scripts on GitHub repos
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'bling/vim-airline'
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'mhinz/vim-signify'
+    "" The sparkup vim script is in a subdirectory of this repo called vim.
+    "" Pass the path to set the runtimepath properly.
+    "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+    "" scripts from http://vim-scripts.org/vim/scripts.html
+    "Bundle 'L9'
+    "Bundle 'FuzzyFinder'
+    "" scripts not on GitHub
+    "Bundle 'git://git.wincent.com/command-t.git'
+
+    filetype plugin indent on     " required
+    " To ignore plugin indent changes, instead use:
+    "filetype plugin on
+    "
+    " Brief help
+    " :BundleList          - list configured bundles
+    " :BundleInstall(!)    - install (update) bundles
+    " :BundleSearch(!) foo - search (or refresh cache first) for foo
+    " :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+    "
+    " see :h vundle for more details or wiki for FAQ
+    " NOTE: comments after Bundle commands are not allowed.
+    " Put your stuff after this line
 
     set t_Co=256
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     let hr = str2nr(strftime('%H'))
     set bg=dark
     colorscheme solarized           " Use the solarized color scheme
-    filetype plugin indent on       " Automatically detect file types and turn on indentation
     syntax on                       " Syntax highlighting
     set mouse=a                     " Enable mouse usage
     set virtualedit=onemore         " Allow cursor to go beyond last character
