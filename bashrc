@@ -12,6 +12,7 @@ export LD_LIBRARY_PATH=$HOME/tools/lib:$LD_LIBRARY_PATH
 export MANPATH=$HOME/tools/share/man:$MANPATH
 export PKG_CONFIG_PATH=$HOME/tools/lib/pkgconfig:$PKG_CONFIG_PATH
 export DOCTEXT_PATH=$HOME/tools/share
+export C_INCLUDE_PATH=$HOME/tools/include:$C_INCLUDE_PATH
 
 if [ -z "$PS1" ]; then
     return
@@ -44,6 +45,10 @@ if [ "$(uname)" == "Darwin" ]; then
     # todo.txt stuff
     alias t="todo.sh"
     export TODOTXT_DEFAULT_ACTION=ls
+
+    # Totalview path
+    export PATH=/opt/totalview/bin:$PATH
+    export LM_LICENSE_FILE=7127@licman1.mcs.anl.gov
 else
     source $HOME/tools/share/autoScreen
 fi
@@ -62,22 +67,26 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 
 alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CFLAGS=-O0 \
     --prefix=$HOME/tools \
-    --enable-g=all \
-    --enable-timing=all \
-    --disable-fast \
+    --disable-mpe \
     --disable-romio \
-    --enable-debuginfo \
-    --enable-threads=runtime \
-    --disable-silent-rules \
+    --enable-g=all \
+    --enable-spawn \
     --enable-maintainer-mode \
-    --disable-strict"
+    --with-pm=hydra \
+    --with-pmi=simple \
+    --disable-cxx \
+    --enable-f77 \
+    --enable-fc \
+    --enable-strict=noopt \
+    --disable-fast \
+    --disable-perftest \
+    --enable-nemesis-dbg-localoddeven"
 
 alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
     --disable-romio \
-    --enable-threads=runtime \
     --enable-strict \
-    --enable-fast \
+    --enable-fast=all \
     --disable-f77 \
     --disable-fc"
 
