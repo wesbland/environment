@@ -3,3 +3,5 @@
 *.hgtags
 vim/.netrwhist
 *.pyc
+vim/bundle/
+~vim/bundle/vundle
