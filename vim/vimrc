@@ -10,9 +10,6 @@
     "let path = '~/some/path/here'
     "call vundle#rc(path)
 
-    " let Vundle manage Vundle, required
-    Bundle 'gmarik/vundle'
-
     " The following are examples of different formats supported.
     " Keep bundle commands between here and filetype plugin indent on.
     " scripts on GitHub repos
@@ -22,6 +19,10 @@
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'tpope/vim-fugitive'
     Bundle 'mhinz/vim-signify'
+    Bundle 'Raimondi/delimitMate'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'ervandew/supertab'
+
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
     "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -45,12 +46,6 @@
     " NOTE: comments after Bundle commands are not allowed.
     " Put your stuff after this line
 
-    set t_Co=256
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    let hr = str2nr(strftime('%H'))
-    set bg=dark
-    colorscheme solarized           " Use the solarized color scheme
-    syntax on                       " Syntax highlighting
     set mouse=a                     " Enable mouse usage
     set virtualedit=onemore         " Allow cursor to go beyond last character
     set history=1000                " Larger history
@@ -69,17 +64,21 @@
 
     " Set VIM to default to latex for *.tex files
     let g:tex_flavor='latex'
+
+    " Turn on autocomplete magic. Just use <TAB> when in insert mode
+    set omnifunc=sytaxcomplete#Complete
 " }
 
 " UI {
+    set t_Co=256
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    set bg=dark
+    colorscheme solarized           " Use the solarized color scheme
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    let g:solarized_termcolors=256
+    syntax on                       " Syntax highlighting
     set showmode                    " Display the current mode
-
-"    if has('cmdline_info')
-"        set ruler                   " Show the ruler
-"        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-"        set showcmd                 " Show partial commands in status line and
-"                                    " selected characters/lines in visual mode
-"    endif
 
     " Turn on airline
     set laststatus=2
@@ -170,4 +169,7 @@
     let $GROFF_NO_SGR=1
     source $VIMRUNTIME/ftplugin/man.vim
     nmap K :Man <cword><CR>
+
+    " Turn on TagBar with \l
+    nnoremap <leader>l :TagbarToggle<CR>
 " }
