@@ -29,6 +29,10 @@ if [ "$(uname)" == "Darwin" ]; then
     export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$PATH
     alias gvim="mvim"
 
+    # Use the correct vim
+    alias vim="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
+    export EDITOR="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
+
     # Mount LRDS development directory on virtual machine
     alias mount_lrds='sshfs -p 31337 localhost:/home/wbland/Repositories/lrds ~/Repositories/lrds'
 

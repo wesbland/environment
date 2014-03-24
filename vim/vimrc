@@ -13,15 +13,14 @@
     " The following are examples of different formats supported.
     " Keep bundle commands between here and filetype plugin indent on.
     " scripts on GitHub repos
+    Bundle 'gmarik/vundle'
     Bundle 'kien/ctrlp.vim'
     Bundle 'majutsushi/tagbar'
     Bundle 'bling/vim-airline'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'tpope/vim-fugitive'
     Bundle 'mhinz/vim-signify'
-    Bundle 'Raimondi/delimitMate'
     Bundle 'scrooloose/nerdcommenter'
-    Bundle 'ervandew/supertab'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
@@ -112,7 +111,7 @@
     set autoindent          " Indent at the same level as the previous lines
     set shiftwidth=4        " Use indents of 4 spaces
     set expandtab           " Tabs are spaces, not tabs
-    set tabstop=4           " Indent every 4 coloms
+    set tabstop=8           " Indent every 4 coloms
     set smarttab
     set softtabstop=4       " Let backspace delete indent
     set pastetoggle=<F10>   " Sane indentation on pastes
