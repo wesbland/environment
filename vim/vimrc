@@ -21,6 +21,8 @@
     Bundle 'tpope/vim-fugitive'
     Bundle 'mhinz/vim-signify'
     Bundle 'scrooloose/nerdcommenter'
+    Bundle 'Shougo/neocomplcache'
+    Bundle 'scrooloose/syntastic'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
@@ -49,23 +51,45 @@
     set virtualedit=onemore         " Allow cursor to go beyond last character
     set history=1000                " Larger history
 
-"    set backup                      " Turn on backups
-"    set backupdir=$HOME/.vimbackup// " Directory to store backup files
-"    set directory=$HOME/.vimswap//  " Store swap files somewhere else
-"    set viewdir=$HOME/.vimviews//   " Store view files somewhere else
-
-    "" Create directories if they don't exist
-"    silent execute '!mkdir -p $HOME/.vimbackup'
-"    silent execute '!mkdir -p $HOME/.vimswap'
-"    silent execute '!mkdir -p $HOME/.vimviews'
-"    au BufWinLeave * silent! mkview     " Make vim save view (state) (folds, cursor, etc)
-"    au BufWinEnter * silent! loadview   " Make vim loadview (state) (folds, cursor, etc)
-
     " Set VIM to default to latex for *.tex files
     let g:tex_flavor='latex'
 
     " Turn on autocomplete magic. Just use <TAB> when in insert mode
     set omnifunc=sytaxcomplete#Complete
+
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_smart_case = 1
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_max_list = 10
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplcache_omni_patterns')
+        let g:neocomplcache_omni_patterns = {}
+    endif
+    let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+    " Turn on gcc checking for syntastic
+    let g:syntastic_c_check_header = 1
+    let g:syntastic_c_no_include_search = 1
+    let g:syntastic_c_cflags = "-I$HOME/tools/include"
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_c_remove_include_errors = 1
+
+    " If we are in the mpich directory, add the correct include directories
+    if getcwd() =~ 'mpich$'
+        let g:syntastic_c_include_dirs = [
+            \ 'src/include',
+            \ 'src/mpid/ch3/include',
+            \ 'src/mpid/ch3/channels/nemesis/include',
+            \ 'src/mpid/ch3/channels/nemesis/utils/monitor',
+            \ 'src/mpid/ch3/channels/sock/include',
+            \ 'src/mpid/common/datatype',
+            \ 'src/mpid/common/sched',
+            \ 'src/mpid/common/thread',
+            \ 'src/util/wrappers',
+            \ ]
+    endif
 " }
 
 " UI {
@@ -73,9 +97,6 @@
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     set bg=dark
     colorscheme solarized           " Use the solarized color scheme
-    let g:solarized_contrast="high"
-    let g:solarized_visibility="high"
-    let g:solarized_termcolors=256
     syntax on                       " Syntax highlighting
     set showmode                    " Display the current mode
 
@@ -171,4 +192,24 @@
 
     " Turn on TagBar with \l
     nnoremap <leader>l :TagbarToggle<CR>
+
+    " Recommended neocomplcache key-mappings.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        " <CR>: close popup and save indent.
+        "return neocomplcache#smart_close_popup() . "\<CR>"
+        " For no inserting <CR> key.
+        return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+    " Mappings for syntastic
+    " Jumps to the next error
+    nnoremap [n :lnext <CR>
+    " Jumps to the previous error
+    nnoremap [p :lprev <CR>
+    " Opens the full list of errors
+    nnoremap <leader>e :Errors <CR>
 " }
+
