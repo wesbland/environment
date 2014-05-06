@@ -79,8 +79,7 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --with-pm=hydra \
     --with-pmi=simple \
     --disable-cxx \
-    --enable-f77 \
-    --enable-fc \
+    --enable-fortran \
     --enable-strict=noopt \
     --disable-fast \
     --disable-perftest \
@@ -91,7 +90,8 @@ alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --disable-romio \
     --enable-strict \
     --enable-fast=all \
-    --disable-f77 \
-    --disable-fc"
+    --disable-fortran"
 
 export MPIR_CVAR_CH3_NOLOCAL=1 # Turn off if you want to try shared memory in MPICH
+
+alias mygrep="grep -r -n -I -s"

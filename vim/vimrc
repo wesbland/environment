@@ -70,11 +70,17 @@
     let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
     " Turn on gcc checking for syntastic
+    let g:syntastic_c_compiler = "clang"
     let g:syntastic_c_check_header = 1
     let g:syntastic_c_no_include_search = 1
-    let g:syntastic_c_cflags = "-I$HOME/tools/include"
+    let g:syntastic_c_no_default_include_dirs = 1
+    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include"
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_c_remove_include_errors = 1
+    let g:syntastic_aggregate_errors = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol = '⚠'
 
     " If we are in the mpich directory, add the correct include directories
     if getcwd() =~ 'mpich$'
@@ -88,6 +94,11 @@
             \ 'src/mpid/common/sched',
             \ 'src/mpid/common/thread',
             \ 'src/util/wrappers',
+            \ 'test/mpi/include/',
+            \ ]
+    else
+        let g:syntastic_c_include_dirs = [
+            \ 'include',
             \ ]
     endif
 " }
