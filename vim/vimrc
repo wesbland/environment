@@ -13,16 +13,16 @@
     " The following are examples of different formats supported.
     " Keep bundle commands between here and filetype plugin indent on.
     " scripts on GitHub repos
-    Bundle 'gmarik/vundle'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'bling/vim-airline'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'mhinz/vim-signify'
-    Bundle 'scrooloose/nerdcommenter'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'Rip-Rip/clang_complete'
+    Bundle 'git@github.com:gmarik/vundle.git'
+    Bundle 'git@github.com:kien/ctrlp.vim.git'
+    Bundle 'git@github.com:majutsushi/tagbar.git'
+    Bundle 'git@github.com:bling/vim-airline.git'
+    Bundle 'git@github.com:altercation/vim-colors-solarized.git'
+    Bundle 'git@github.com:tpope/vim-fugitive.git'
+    Bundle 'git@github.com:mhinz/vim-signify.git'
+    Bundle 'git@github.com:scrooloose/nerdcommenter.git'
+    Bundle 'git@github.com:scrooloose/syntastic.git'
+    Bundle 'git@github.com:Rip-Rip/clang_complete.git'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
