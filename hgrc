@@ -2,10 +2,10 @@
 ignorews = True
 
 [email]
-from = wbland@mcs.anl.gov
+from = wbland@anl.gov
 
 [ui]
-username = Wesley Bland <wbland@mcs.anl.gov>
+username = Wesley Bland <wbland@anl.gov>
 
 [extensions]
 rebase = 

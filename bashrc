@@ -76,6 +76,7 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --enable-g=all \
     --enable-spawn \
     --enable-maintainer-mode \
+    --enable-error-checking=all \
     --with-pm=hydra \
     --with-pmi=simple \
     --disable-cxx \
@@ -86,12 +87,15 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --enable-nemesis-dbg-localoddeven"
 
 alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
-    --prefix=$HOME/tools \
+    --prefix=$HOME/fast-bin/tools \
     --disable-romio \
     --enable-strict \
-    --enable-fast=all \
-    --disable-fortran"
+    --enable-fast=all"
 
-export MPIR_CVAR_CH3_NOLOCAL=1 # Turn off if you want to try shared memory in MPICH
+export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MPICH
 
-alias mygrep="grep -r -n -I -s"
+alias mygrep="grep -r -n -I -s --color"
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export MPIR_CVAR_CH3_ENABLE_FT=1

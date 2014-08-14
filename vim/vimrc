@@ -21,8 +21,8 @@
     Bundle 'tpope/vim-fugitive'
     Bundle 'mhinz/vim-signify'
     Bundle 'scrooloose/nerdcommenter'
-    Bundle 'Shougo/neocomplcache'
     Bundle 'scrooloose/syntastic'
+    Bundle 'Rip-Rip/clang_complete'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
@@ -74,7 +74,7 @@
     let g:syntastic_c_check_header = 1
     let g:syntastic_c_no_include_search = 1
     let g:syntastic_c_no_default_include_dirs = 1
-    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include"
+    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include -I$HOME/ulfm-bin/include"
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_c_remove_include_errors = 1
     let g:syntastic_aggregate_errors = 1
@@ -83,9 +83,10 @@
     let g:syntastic_warning_symbol = '⚠'
 
     " If we are in the mpich directory, add the correct include directories
-    if getcwd() =~ 'mpich$'
+    if getcwd() =~ 'mpich'
         let g:syntastic_c_include_dirs = [
             \ 'src/include',
+            \ 'src/mpi/datatype/',
             \ 'src/mpid/ch3/include',
             \ 'src/mpid/ch3/channels/nemesis/include',
             \ 'src/mpid/ch3/channels/nemesis/utils/monitor',
@@ -101,13 +102,15 @@
             \ 'include',
             \ ]
     endif
+
+    let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " }
 
 " UI {
     set t_Co=256
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     set bg=dark
-    colorscheme solarized           " Use the solarized color scheme
+    "colorscheme solarized           " Use the solarized color scheme
     syntax on                       " Syntax highlighting
     set showmode                    " Display the current mode
 
@@ -135,6 +138,11 @@
     set scrolljump=5        " Lines to scroll when cursor leaves the screen
     set scrolloff=3         " Minimum lines to keep above and below cursor
     set guifont=Menlo\ Regular\ for\ Powerline:h12
+
+    set foldmethod=syntax   " Turn on syntax defined folding
+    autocmd BufWinEnter * silent! :%foldopen! " Open all folds by default
+
+    let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
 " }
 
 " Formatting {
