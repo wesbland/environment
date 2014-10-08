@@ -53,8 +53,19 @@ if [ "$(uname)" == "Darwin" ]; then
     # Totalview path
     export PATH=/opt/totalview/bin:$PATH
     export LM_LICENSE_FILE=7127@licman1.mcs.anl.gov
+
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 else
     source $HOME/tools/share/autoScreen
+
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+
+    PERL_MB_OPT="--install_base \"/homes/wbland/perl5\""; export PERL_MB_OPT;
+    PERL_MM_OPT="INSTALL_BASE=/homes/wbland/perl5"; export PERL_MM_OPT;
+
+    export PERL5LIB=/homes/wbland/tools/share/perl/5.14.2
 fi
 
 alias update_cscope="find $HOME/Repositories \
@@ -87,7 +98,7 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --enable-nemesis-dbg-localoddeven"
 
 alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
-    --prefix=$HOME/fast-bin/tools \
+    --prefix=$HOME/tools \
     --disable-romio \
     --enable-strict \
     --enable-fast=all"
@@ -96,6 +107,6 @@ export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MP
 
 alias mygrep="grep -r -n -I -s --color"
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 export MPIR_CVAR_CH3_ENABLE_FT=1
+
+alias mygrep="grep -r -n -I -s"
