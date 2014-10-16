@@ -18,14 +18,13 @@ if [ -z "$PS1" ]; then
     return
 fi
 
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+alias alert='terminal-notifier -message "$(history 1)" -title Terminal'
 
 export EDITOR="vim"
 
 ulimit -c unlimited
 
 if [ "$(uname)" == "Darwin" ]; then
-    alias sshvm="ssh localhost -p 31337"
     export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$PATH
     alias gvim="mvim"
 
@@ -40,7 +39,7 @@ if [ "$(uname)" == "Darwin" ]; then
     alias start_vm='VBoxHeadless -s Ubuntu'
 
     export TEXTFILTER_PATH=$HOME/tools/share/doctext
-    export DOCTEXT_PATH=$HOME/tools/share/doctext
+    export DOCTEXT_PATH=$HOME/tools/share
 
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
@@ -68,8 +67,11 @@ else
     export PERL5LIB=/homes/wbland/tools/share/perl/5.14.2
 fi
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\$\[\033[00m\] '
+
 alias update_cscope="find $HOME/Repositories \
-    \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk \) -prune \) \
+    \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk -o -name ompi-ulfm \) -prune \) \
         -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.cpp \) -print > cscope.files ; \
     cscope -R -b -f $HOME/.cscope.out ; \
     rm -f cscope.files"
@@ -94,8 +96,7 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --enable-fortran \
     --enable-strict=noopt \
     --disable-fast \
-    --disable-perftest \
-    --enable-nemesis-dbg-localoddeven"
+    --disable-perftest"
 
 alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
@@ -109,4 +110,5 @@ alias mygrep="grep -r -n -I -s --color"
 
 export MPIR_CVAR_CH3_ENABLE_FT=1
 
-alias mygrep="grep -r -n -I -s"
+alias mpich31='alias mpicc=/Users/wbland/mpich-3.1.1/bin/mpicc; alias mpiexec=/Users/wbland/mpich-3.1.1/bin/mpiexec'
+alias mpich30='alias mpicc=/Users/wbland/mpich-3.1/bin/mpicc; alias mpiexec=/Users/wbland/mpich-3.1/bin/mpiexec'

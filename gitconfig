@@ -21,6 +21,9 @@
     abbrev = 8
     excludesfile = /Users/wbland/.gitignore_global
 
+[pull]
+    rebase = true
+
 # optional, but allows better view of commits
 [alias]
     graph = log --graph --decorate --abbrev-commit --pretty=oneline

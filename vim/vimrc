@@ -23,6 +23,7 @@
     Bundle 'git@github.com:scrooloose/nerdcommenter.git'
     Bundle 'git@github.com:scrooloose/syntastic.git'
     Bundle 'git@github.com:Rip-Rip/clang_complete.git'
+    Bundle 'git@github.com:sickill/vim-monokai.git'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
     "" Pass the path to set the runtimepath properly.
@@ -74,7 +75,7 @@
     let g:syntastic_c_check_header = 1
     let g:syntastic_c_no_include_search = 1
     let g:syntastic_c_no_default_include_dirs = 1
-    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include -I$HOME/ulfm-bin/include"
+    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include"
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_c_remove_include_errors = 1
     let g:syntastic_aggregate_errors = 1
@@ -108,9 +109,8 @@
 
 " UI {
     set t_Co=256
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     set bg=dark
-    "colorscheme solarized           " Use the solarized color scheme
+    colorscheme monokai
     syntax on                       " Syntax highlighting
     set showmode                    " Display the current mode
 
@@ -143,6 +143,8 @@
     autocmd BufWinEnter * silent! :%foldopen! " Open all folds by default
 
     let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
+
+    set showtabline=2
 " }
 
 " Formatting {
@@ -164,12 +166,15 @@
     " Highlight trailing whitespace in red
     " Have this highlighting not appear while in insert mode
     " Have the highlighting of whitespace apply when new buffers are opened
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     highlight ExtraWhitespace ctermbg=red guibg=red
     match ExtraWhitespace /\s\+$/
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
+
+    highlight Search ctermbg=black ctermfg=yellow term=underline
 " }
 
 " Key Mappings {
