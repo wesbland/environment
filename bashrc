@@ -55,8 +55,6 @@ if [ "$(uname)" == "Darwin" ]; then
 
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 else
-    source $HOME/tools/share/autoScreen
-
     if [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
     fi
@@ -110,5 +108,3 @@ alias mygrep="grep -r -n -I -s --color"
 
 export MPIR_CVAR_CH3_ENABLE_FT=1
 
-alias mpich31='alias mpicc=/Users/wbland/mpich-3.1.1/bin/mpicc; alias mpiexec=/Users/wbland/mpich-3.1.1/bin/mpiexec'
-alias mpich30='alias mpicc=/Users/wbland/mpich-3.1/bin/mpicc; alias mpiexec=/Users/wbland/mpich-3.1/bin/mpiexec'
