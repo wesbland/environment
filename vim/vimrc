@@ -22,7 +22,9 @@
     Bundle 'git@github.com:mhinz/vim-signify.git'
     Bundle 'git@github.com:scrooloose/nerdcommenter.git'
     Bundle 'git@github.com:scrooloose/syntastic.git'
-    Bundle 'git@github.com:Rip-Rip/clang_complete.git'
+    Bundle 'git@github.com:scrooloose/nerdtree'
+
+    " Colorschemes
     Bundle 'git@github.com:sickill/vim-monokai.git'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
@@ -71,38 +73,17 @@
     let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
     " Turn on gcc checking for syntastic
-    let g:syntastic_c_compiler = "clang"
+    let g:syntastic_c_compiler = 'clang'
+    let g:syntastic_c_checkers = 'cppcheck'
     let g:syntastic_c_check_header = 1
     let g:syntastic_c_no_include_search = 1
     let g:syntastic_c_no_default_include_dirs = 1
-    let g:syntastic_c_compiler_options = "-Wall -I$HOME/tools/include"
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_c_remove_include_errors = 1
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_error_symbol = '✗'
     let g:syntastic_warning_symbol = '⚠'
-
-    " If we are in the mpich directory, add the correct include directories
-    if getcwd() =~ 'mpich'
-        let g:syntastic_c_include_dirs = [
-            \ 'src/include',
-            \ 'src/mpi/datatype/',
-            \ 'src/mpid/ch3/include',
-            \ 'src/mpid/ch3/channels/nemesis/include',
-            \ 'src/mpid/ch3/channels/nemesis/utils/monitor',
-            \ 'src/mpid/ch3/channels/sock/include',
-            \ 'src/mpid/common/datatype',
-            \ 'src/mpid/common/sched',
-            \ 'src/mpid/common/thread',
-            \ 'src/util/wrappers',
-            \ 'test/mpi/include/',
-            \ ]
-    else
-        let g:syntastic_c_include_dirs = [
-            \ 'include',
-            \ ]
-    endif
 
     let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " }
@@ -149,7 +130,7 @@
 
 " Formatting {
     set nowrap              " Wrap long lines
-    set tw=78               " Automatically wrap long lines at 78 characters
+    "set tw=78               " Automatically wrap long lines at 78 characters
     set autoindent          " Indent at the same level as the previous lines
     set shiftwidth=4        " Use indents of 4 spaces
     set expandtab           " Tabs are spaces, not tabs
@@ -159,6 +140,7 @@
     set pastetoggle=<F10>   " Sane indentation on pastes
     set comments=s1:/*,mb:*,elx:*/  " Auto format comment blocks
     set list listchars=tab:\>>      " Show the indent characters so I don't screw up existing formatting
+
     " Remove trailing whitespace and ^M chars
     " I had to turn this off because it would drive MPICH people crazy
     "autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))

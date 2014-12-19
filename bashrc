@@ -94,7 +94,8 @@ alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CF
     --enable-fortran \
     --enable-strict=noopt \
     --disable-fast \
-    --disable-perftest"
+    --disable-perftest \
+    --enable-nemesis-dbg-localoddeven"
 
 alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
     --prefix=$HOME/tools \
@@ -106,5 +107,6 @@ export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MP
 
 alias mygrep="grep -r -n -I -s --color"
 
-export MPIR_CVAR_CH3_ENABLE_FT=1
+export MPIR_CVAR_ENABLE_FT=1
 
+alias sshvm="ssh -p 31337 127.0.0.1"
