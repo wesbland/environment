@@ -18,6 +18,8 @@ if [ -z "$PS1" ]; then
     return
 fi
 
+source ~/.dotfiles/git-prompt.sh
+
 alias alert='terminal-notifier -message "$(history 1)" -title Terminal'
 
 export EDITOR="vim"
@@ -25,18 +27,11 @@ export EDITOR="vim"
 ulimit -c unlimited
 
 if [ "$(uname)" == "Darwin" ]; then
-    export PATH=/usr/local/Cellar/ccache/3.1.9/libexec:$PATH
     alias gvim="mvim"
 
     # Use the correct vim
-    alias vim="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
-    export EDITOR="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
-
-    # Mount LRDS development directory on virtual machine
-    alias mount_lrds='sshfs -p 31337 localhost:/home/wbland/Repositories/lrds ~/Repositories/lrds'
-
-    # Start virtual machine for LRDS development
-    alias start_vm='VBoxHeadless -s Ubuntu'
+    #alias vim="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
+    #export EDITOR="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
 
     export TEXTFILTER_PATH=$HOME/tools/share/doctext
     export DOCTEXT_PATH=$HOME/tools/share
@@ -45,24 +40,11 @@ if [ "$(uname)" == "Darwin" ]; then
         . $(brew --prefix)/etc/bash_completion
     fi
 
-    # todo.txt stuff
-    alias t="todo.sh"
-    export TODOTXT_DEFAULT_ACTION=ls
-
-    # Totalview path
-    export PATH=/opt/totalview/bin:$PATH
-    export LM_LICENSE_FILE=7127@licman1.mcs.anl.gov
-
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 else
     if [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
     fi
-
-    PERL_MB_OPT="--install_base \"/homes/wbland/perl5\""; export PERL_MB_OPT;
-    PERL_MM_OPT="INSTALL_BASE=/homes/wbland/perl5"; export PERL_MM_OPT;
-
-    export PERL5LIB=/homes/wbland/tools/share/perl/5.14.2
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -108,5 +90,3 @@ export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MP
 alias mygrep="grep -r -n -I -s --color"
 
 export MPIR_CVAR_ENABLE_FT=1
-
-alias sshvm="ssh -p 31337 127.0.0.1"
