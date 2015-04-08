@@ -1,6 +1,6 @@
 [user]
     name = Wesley Bland
-    email = wbland@anl.gov
+    email = wesley.bland@intel.com
 
 [color]
     diff = auto
@@ -27,11 +27,8 @@
 # optional, but allows better view of commits
 [alias]
     graph = log --graph --decorate --abbrev-commit --pretty=oneline
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [push]
     default = simple
+
+[http]
+    proxy = http://proxy.jf.intel.com:911
