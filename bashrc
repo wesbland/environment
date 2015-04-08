@@ -43,10 +43,15 @@ else
     fi
 fi
 
+# Add tool to allow git to talk to mercurial
+if [ -f $HOME/tools/git-remote-hg ]; then
+    export PATH=$HOME/tools/git-remote-hg:$PATH
+fi
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\$\[\033[00m\] '
 
-alias update_cscope="find $HOME/Repositories \
+alias update_cscope="find $HOME/code \
     \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk -o -name ompi-ulfm \) -prune \) \
         -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.cpp \) -print > cscope.files ; \
     cscope -R -b -f $HOME/.cscope.out ; \
