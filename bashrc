@@ -20,18 +20,14 @@ fi
 
 source ~/.dotfiles/git-prompt.sh
 
-alias alert='terminal-notifier -message "$(history 1)" -title Terminal'
-
 export EDITOR="vim"
 
 ulimit -c unlimited
 
+alias mygrep="grep -r -n -I -s --color"
+
 if [ "$(uname)" == "Darwin" ]; then
     alias gvim="mvim"
-
-    # Use the correct vim
-    #alias vim="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
-    #export EDITOR="/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim"
 
     export TEXTFILTER_PATH=$HOME/tools/share/doctext
     export DOCTEXT_PATH=$HOME/tools/share
@@ -62,31 +58,6 @@ export CSCOPE_DB=$HOME/.cscope.out
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
 alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset MPICH_DBG_LEVEL'
 
-alias config_mpich_debug="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran CFLAGS=-O0 \
-    --prefix=$HOME/tools \
-    --disable-mpe \
-    --disable-romio \
-    --enable-g=all \
-    --enable-spawn \
-    --enable-maintainer-mode \
-    --enable-error-checking=all \
-    --with-pm=hydra \
-    --with-pmi=simple \
-    --disable-cxx \
-    --enable-fortran \
-    --enable-strict=noopt \
-    --disable-fast \
-    --disable-perftest \
-    --enable-nemesis-dbg-localoddeven"
-
-alias config_mpich_fast="./configure CC=gcc CXX=g++ FC=gfortran F77=gfortran \
-    --prefix=$HOME/tools \
-    --disable-romio \
-    --enable-strict \
-    --enable-fast=all"
-
 export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MPICH
-
-alias mygrep="grep -r -n -I -s --color"
-
 export MPIR_CVAR_ENABLE_FT=1
+
