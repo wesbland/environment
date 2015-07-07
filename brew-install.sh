@@ -7,6 +7,8 @@ brews=(
     bash-completion
     macvim
     mercurial
+    tmux
+    ctags
     )
 casks=(
     alfred

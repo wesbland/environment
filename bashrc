@@ -18,7 +18,14 @@ if [ -z "$PS1" ]; then
     return
 fi
 
-source ~/.dotfiles/git-prompt.sh
+#source ~/.dotfiles/git-prompt.sh
+. $(brew --prefix)/Library/Taps/bfontaine/homebrew-command-not-found/handler.sh
+
+export GIT_PROMPT_ONLY_IN_REPO=1
+if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
+    GIT_PROMPT_THEME=Default
+    source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+fi
 
 export EDITOR="vim"
 
@@ -44,7 +51,7 @@ else
 fi
 
 # Add tool to allow git to talk to mercurial
-if [ -f $HOME/tools/git-remote-hg ]; then
+if [ -d $HOME/tools/git-remote-hg ]; then
     export PATH=$HOME/tools/git-remote-hg:$PATH
 fi
 
@@ -52,7 +59,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\$\[\033[00m\] '
 
 alias update_cscope="find $HOME/code \
-    \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk -o -name ompi-ulfm \) -prune \) \
+    \( \( -name mvapich2 -o -name ulfm -o -name ompi-trunk -o -name ompi-ulfm -o -name mpich-intel \) -prune \) \
         -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.cpp \) -print > cscope.files ; \
     cscope -R -b -f $HOME/.cscope.out ; \
     rm -f cscope.files"

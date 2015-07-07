@@ -13,7 +13,7 @@
     " The following are examples of different formats supported.
     " Keep bundle commands between here and filetype plugin indent on.
     " scripts on GitHub repos
-    Bundle 'git@github.com:gmarik/vundle.git'
+    Bundle 'git@github.com:gmarik/Vundle.vim.git'
     Bundle 'git@github.com:kien/ctrlp.vim.git'
     Bundle 'git@github.com:majutsushi/tagbar.git'
     Bundle 'git@github.com:bling/vim-airline.git'
