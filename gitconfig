@@ -19,7 +19,7 @@
 [core]
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 8
-    excludesfile = /Users/wbland/.gitignore_global
+	excludesfile = ~/.gitignore
 
 [pull]
     rebase = true
@@ -32,3 +32,5 @@
 
 [http]
     proxy = http://proxy.jf.intel.com:911
+[url "https://"]
+    insteadOf = git://

@@ -17,14 +17,14 @@
     Bundle 'git@github.com:kien/ctrlp.vim.git'
     Bundle 'git@github.com:majutsushi/tagbar.git'
     Bundle 'git@github.com:bling/vim-airline.git'
-    Bundle 'git@github.com:altercation/vim-colors-solarized.git'
     Bundle 'git@github.com:tpope/vim-fugitive.git'
     Bundle 'git@github.com:mhinz/vim-signify.git'
-    Bundle 'git@github.com:scrooloose/nerdcommenter.git'
+    " Bundle 'git@github.com:scrooloose/nerdcommenter.git'
     Bundle 'git@github.com:scrooloose/syntastic.git'
     Bundle 'git@github.com:scrooloose/nerdtree'
 
     " Colorschemes
+    " Bundle 'git@github.com:altercation/vim-colors-solarized.git'
     Bundle 'git@github.com:sickill/vim-monokai.git'
 
     "" The sparkup vim script is in a subdirectory of this repo called vim.
@@ -190,7 +190,7 @@
     " Update and reset the cscope tags
     nmap <leader>c :update_cscope<CR>
         \:cs reset<CR>
-    cs add $CSCOPE_DB
+    "cs add $CSCOPE_DB
 
     " Open man pages in splits instead of covering the window
     let $GROFF_NO_SGR=1
