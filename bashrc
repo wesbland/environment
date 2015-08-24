@@ -76,9 +76,17 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 #export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MPICH
 #export MPIR_CVAR_ENABLE_FT=1
 
-source /opt/intel/bin/iccvars.sh intel64
+if [ -f /opt/intel/cc/15.0.090/bin/iccvars.sh ]; then
+    source /opt/intel/cc/15.0.090/bin/iccvars.sh intel64
+elif [-f /opt/intel/bin/iccvars.sh ]; then
+    source /opt/intel/bin/iccvars.sh intel64
+fi
+
 export http_proxy=http://proxy-us.intel.com:911
-export https_proxy=http://proxy-us.intel.com:911
+export https_proxy=http://proxy-us.intel.com:912
+export ftp_proxy=http://proxy-us.intel.com:911
+export socks_proxy=http://proxy-us.intel.com:1080
+export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
 
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
