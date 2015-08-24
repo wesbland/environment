@@ -51,6 +51,7 @@ else
     fi
 
     source "$HOME/.dotfiles/git-prompt.sh"
+    source "$HOME/.dotfiles/git-completion.bash"
 fi
 
 # Add tool to allow git to talk to mercurial
