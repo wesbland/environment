@@ -87,4 +87,3 @@ export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0
 
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
-export HOMEBREW_GITHUB_API_TOKEN=bc1425469fd5ad7d68a7ca5f27b5780ecaff5a4f
