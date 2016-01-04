@@ -18,8 +18,6 @@ if [ -z "$PS1" ]; then
     return
 fi
 
-#source ~/.dotfiles/git-prompt.sh
-
 export EDITOR="vim"
 
 ulimit -c unlimited
@@ -32,13 +30,11 @@ if [ "$(uname)" == "Darwin" ]; then
     export TEXTFILTER_PATH=$HOME/tools/share/doctext
     export DOCTEXT_PATH=$HOME/tools/share
 
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
+    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+        . $(brew --prefix)/share/bash-completion/bash_completion
     fi
 
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-    . $(brew --prefix)/Library/Taps/bfontaine/homebrew-command-not-found/handler.sh
 
     export GIT_PROMPT_ONLY_IN_REPO=1
     if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
@@ -91,3 +87,4 @@ export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0
 
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
+export HOMEBREW_GITHUB_API_TOKEN=bc1425469fd5ad7d68a7ca5f27b5780ecaff5a4f

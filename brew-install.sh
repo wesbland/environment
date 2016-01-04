@@ -1,24 +1,16 @@
 #!/bin/bash
 
-brews=(
-    brew-cask
-    git
-    cscope
-    bash-completion
-    macvim
-    mercurial
-    tmux
-    ctags
-    )
-casks=(
-    alfred
-    google-chrome
-    iterm2
-    spotify
-    mactex
-    )
+brews=`cat brews`
+casks=`cat casks`
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install ${brews[*]}
-brew cask install ${casks[*]}
+brew install cask
+
+echo "Installing ${brews}"
+
+brew install ${brews}
+
+echo "Installing casks ${casks}"
+
+brew cask install ${casks}
