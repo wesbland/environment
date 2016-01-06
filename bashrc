@@ -75,7 +75,7 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 
 if [ -f /opt/intel/cc/15.0.090/bin/iccvars.sh ]; then
     source /opt/intel/cc/15.0.090/bin/iccvars.sh intel64
-elif [-f /opt/intel/bin/iccvars.sh ]; then
+elif [ -f /opt/intel/bin/iccvars.sh ]; then
     source /opt/intel/bin/iccvars.sh intel64
 fi
 
