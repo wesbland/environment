@@ -19,7 +19,7 @@
 [core]
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 8
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore_global
 
 [pull]
     rebase = true
@@ -42,3 +42,6 @@
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
+[hub]
+    host = github.intel.com
+    protocol = ssh

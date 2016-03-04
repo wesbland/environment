@@ -50,11 +50,6 @@ else
     source "$HOME/.dotfiles/git-completion.bash"
 fi
 
-# Add tool to allow git to talk to mercurial
-if [ -d $HOME/tools/git-remote-hg ]; then
-    export PATH=$HOME/tools/git-remote-hg:$PATH
-fi
-
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\$\[\033[00m\] '
 
@@ -70,20 +65,11 @@ export CSCOPE_DB=$HOME/.cscope.out
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
 alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset MPICH_DBG_LEVEL'
 
-#export MPIR_CVAR_CH3_NOLOCAL=0 # Turn off if you want to try shared memory in MPICH
-#export MPIR_CVAR_ENABLE_FT=1
-
-if [ -f /opt/intel/cc/15.0.090/bin/iccvars.sh ]; then
-    source /opt/intel/cc/15.0.090/bin/iccvars.sh intel64
-elif [ -f /opt/intel/bin/iccvars.sh ]; then
-    source /opt/intel/bin/iccvars.sh intel64
-fi
-
-export http_proxy=http://proxy-us.intel.com:911
-export https_proxy=http://proxy-us.intel.com:912
-export ftp_proxy=http://proxy-us.intel.com:911
-export socks_proxy=http://proxy-us.intel.com:1080
-export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+#if [ -f /opt/intel/cc/15.0.090/bin/iccvars.sh ]; then
+#    source /opt/intel/cc/15.0.090/bin/iccvars.sh intel64
+#elif [ -f /opt/intel/bin/iccvars.sh ]; then
+#    source /opt/intel/bin/iccvars.sh intel64
+#fi
 
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
