@@ -7,7 +7,7 @@ elif [ "$(uname)" == "Linux" ]; then
     alias ls="ls --color"
 fi
 
-export PATH=$HOME/tools/x86/bin:$HOME/.dotfiles/tmux:$PATH
+export PATH=$HOME/tools/x86/bin:$HOME/.dotfiles/tmux:$HOME/.dotfiles/diff-so-fancy:$PATH
 export LD_LIBRARY_PATH=$HOME/tools/x86/lib:$LD_LIBRARY_PATH
 export MANPATH=$HOME/tools/x86/share/man:$MANPATH
 export PKG_CONFIG_PATH=$HOME/tools/x86/lib/pkgconfig:$PKG_CONFIG_PATH
