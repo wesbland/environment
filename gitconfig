@@ -20,6 +20,7 @@
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 12
     excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [pull]
     rebase = true
@@ -221,6 +222,7 @@
 [diff]
     renames = copies
     mnemonicprefix = true
+    compactionHeuristic = true
 
 [hub]
     host = github.intel.com
@@ -231,3 +233,9 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[pager]
+    log = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
+    diff = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+    diffFilter = diff-so-fancy | less --tabs=4 -RFX
