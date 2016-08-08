@@ -18,12 +18,10 @@
     Plugin 'majutsushi/tagbar.git'
     Plugin 'bling/vim-airline.git'
     Plugin 'tpope/vim-fugitive.git'
-    Plugin 'tpope/vim-commentary'
     Plugin 'mhinz/vim-signify.git'
-    " Plugin 'scrooloose/nerdcommenter.git'
-    " Plugin 'scrooloose/syntastic.git'
+    Plugin 'scrooloose/nerdcommenter.git'
+    Plugin 'scrooloose/syntastic.git'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'Lokaltog/vim-easymotion'
 
     " Colorschemes
     " Plugin 'altercation/vim-colors-solarized.git'

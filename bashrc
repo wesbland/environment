@@ -30,8 +30,8 @@ if [ "$(uname)" == "Darwin" ]; then
     export TEXTFILTER_PATH=$HOME/tools/share/doctext
     export DOCTEXT_PATH=$HOME/tools/share
 
-    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-        . $(brew --prefix)/share/bash-completion/bash_completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
     fi
 
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -73,3 +73,13 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
+
+alias sshfx_fx1-tcar='sshfs fx1-tcar.fx.intel.com:/home/wbland fx1-tcar -o defer_permissions -o volname=fx1-tcar'
+
+alias git="hub"
+
+PATH="/Users/wbland/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/wbland/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/wbland/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/wbland/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/wbland/perl5"; export PERL_MM_OPT;
