@@ -19,7 +19,7 @@
 [core]
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 12
-    excludesfile = ~/.gitignore_global
+	excludesfile = /home/wbland/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [pull]
@@ -28,7 +28,7 @@
 # optional, but allows better view of commits
 [alias]
     graph = log --graph --decorate --abbrev-commit --pretty=oneline
-    sed = ! git grep -l '.' | xargs gsed -i -e
+    sed = ! git grep -l '.' | xargs sed -i -e
 
     # Amend, reusing the commit message.
     autoamend = commit -a --amend -CHEAD
@@ -226,7 +226,6 @@
 
 [hub]
     host = github.intel.com
-    protocol = ssh
 [fetch]
     prune = true
 [filter "lfs"]

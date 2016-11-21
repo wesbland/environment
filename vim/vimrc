@@ -19,9 +19,12 @@
     Plugin 'bling/vim-airline.git'
     Plugin 'tpope/vim-fugitive.git'
     Plugin 'mhinz/vim-signify.git'
-    Plugin 'scrooloose/nerdcommenter.git'
-    Plugin 'scrooloose/syntastic.git'
+    " Plugin 'scrooloose/nerdcommenter.git'
+    "Plugin 'scrooloose/syntastic.git'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'Lokaltog/vim-easymotion'
+    "Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'rdnetto/YCM-Generator'
 
     " Colorschemes
     " Plugin 'altercation/vim-colors-solarized.git'
@@ -62,34 +65,45 @@
     let g:tex_flavor='latex'
 
     " Turn on autocomplete magic. Just use <TAB> when in insert mode
-    set omnifunc=sytaxcomplete#Complete
+    "set omnifunc=sytaxcomplete#Complete
 
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplcache_enable_smart_case = 1
-    let g:neocomplcache_min_syntax_length = 3
-    let g:neocomplcache_max_list = 10
+    "let g:neocomplcache_enable_at_startup = 1
+    "let g:neocomplcache_enable_smart_case = 1
+    "let g:neocomplcache_min_syntax_length = 3
+    "let g:neocomplcache_max_list = 10
 
-    " Enable heavy omni completion.
-    if !exists('g:neocomplcache_omni_patterns')
-        let g:neocomplcache_omni_patterns = {}
-    endif
-    let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    "" Enable heavy omni completion.
+    "if !exists('g:neocomplcache_omni_patterns')
+    "    let g:neocomplcache_omni_patterns = {}
+    "endif
+    "let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
     " Turn on gcc checking for syntastic
-    let g:syntastic_c_compiler = 'clang'
-    let g:syntastic_c_checkers = 'cppcheck'
+    let g:syntastic_c_compiler = '/opt/rh/devtoolset-3/root/usr/bin/gcc'
+    let g:syntastic_cpp_compiler = '/opt/rh/devtoolset-3/root/usr/bin/gcc'
+    "let g:syntastic_c_checkers = 'clang'
+    let g:syntastic_c_config_file = '.syntastic_c_config'
+    let g:syntastic_cpp_config_file = '.syntastic_c_config'
     let g:syntastic_c_check_header = 1
-    let g:syntastic_c_no_include_search = 1
+    let g:syntastic_cpp_check_header = 1
+    "let g:syntastic_c_no_include_search = 1
     let g:syntastic_c_no_default_include_dirs = 1
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_c_remove_include_errors = 1
+    let g:syntastic_cpp_no_default_include_dirs = 1
+    let g:syntastic_c_auto_refresh_includes = 1
+    let g:syntastic_cpp_auto_refresh_includes = 1
+    "let g:syntastic_always_populate_loc_list = 1
+    "let g:syntastic_c_remove_include_errors = 1
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_error_symbol = '✗'
     let g:syntastic_warning_symbol = '⚠'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_c_remove_include_errors = 1
+    let g:syntastic_cpp_remove_include_errors = 1
 
-    let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+    "let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " }
 
 " UI {
@@ -222,5 +236,14 @@
     nnoremap [p :lprev <CR>
     " Opens the full list of errors
     nnoremap <leader>e :Errors <CR>
+
+    :map <M-Esc>[62~ <ScrollWheelUp>
+    :map! <M-Esc>[62~ <ScrollWheelUp>
+    :map <M-Esc>[63~ <ScrollWheelDown>
+    :map! <M-Esc>[63~ <ScrollWheelDown>
+    :map <M-Esc>[64~ <S-ScrollWheelUp>
+    :map! <M-Esc>[64~ <S-ScrollWheelUp>
+    :map <M-Esc>[65~ <S-ScrollWheelDown>
+    :map! <M-Esc>[65~ <S-ScrollWheelDown>
 " }
 

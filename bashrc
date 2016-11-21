@@ -47,7 +47,17 @@ else
     fi
 
     source "$HOME/.dotfiles/git-prompt.sh"
-    source "$HOME/.dotfiles/git-completion.bash"
+    source "$HOME/.dotfiles/bash_completion/git-completion.bash"
+
+    if [ -f /opt/intel/csr/etc/hub.bash_completion.sh ]; then
+        . /opt/intel/csr/etc/hub.bash_completion.sh
+    fi
+
+    export PATH=/opt/intel/csr/bin:$PATH
+    export LD_LIBRARY_PATH=/opt/intel/csr/lib:/opt/intel/csr/lib64:$LD_LIBRARY_PATH
+    export MANPATH=/opt/intel/csr/share/man:$MANPATH
+    export PKG_CONFIG_PATH=/opt/intel/csr/lib/pkgconfig:$PKG_CONFIG_PATH
+    export C_INCLUDE_PATH=/opt/intel/csr/include:$C_INCLUDE_PATH
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -71,6 +81,7 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 #    source /opt/intel/bin/iccvars.sh intel64
 #fi
 
+<<<<<<< HEAD
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
 
