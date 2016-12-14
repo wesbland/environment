@@ -18,7 +18,8 @@ if [ -z "$PS1" ]; then
     return
 fi
 
-export EDITOR="vim"
+alias vim="nvim"
+export EDITOR="nvim"
 
 ulimit -c unlimited
 
@@ -41,6 +42,12 @@ if [ "$(uname)" == "Darwin" ]; then
         GIT_PROMPT_THEME=Default
         source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
     fi
+
+    PATH="/Users/wbland/perl5/bin${PATH:+:${PATH}}"; export PATH;
+    PERL5LIB="/Users/wbland/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+    PERL_LOCAL_LIB_ROOT="/Users/wbland/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+    PERL_MB_OPT="--install_base \"/Users/wbland/perl5\""; export PERL_MB_OPT;
+    PERL_MM_OPT="INSTALL_BASE=/Users/wbland/perl5"; export PERL_MM_OPT;
 else
     if [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
@@ -58,6 +65,17 @@ else
     export MANPATH=/opt/intel/csr/share/man:$MANPATH
     export PKG_CONFIG_PATH=/opt/intel/csr/lib/pkgconfig:$PKG_CONFIG_PATH
     export C_INCLUDE_PATH=/opt/intel/csr/include:$C_INCLUDE_PATH
+
+    INTEL_PROXY='http://proxy-chain.intel.com:911'
+    INTEL_HTTPS_PROXY='https://proxy-chain.intel.com:912'
+    export {http,ftp,socks,all,npm_config,npm_config_https}_proxy=$INTEL_PROXY
+    export {HTTP,FTP,SOCKS,ALL}_proxy=$INTEL_PROXY
+    export {HTTP,FTP,SOCKS,ALL}_PROXY=$INTEL_PROXY
+    export HTTPS_PROXY=$INTEL_HTTPS_PROXY
+    export https_proxy=$INTEL_HTTPS_PROXY
+    export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+
+    source /opt/rh/devtoolset-4/enable
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -81,16 +99,11 @@ alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset 
 #    source /opt/intel/bin/iccvars.sh intel64
 #fi
 
-<<<<<<< HEAD
 export LOGFILE=${PMI_RANK}.${PID}.${HOSTNAME}.out
 export LOGFILEERR=${PMI_RANK}.${PID}.${HOSTNAME}.err
 
-alias sshfx_fx1-tcar='sshfs fx1-tcar.fx.intel.com:/home/wbland fx1-tcar -o defer_permissions -o volname=fx1-tcar'
-
 alias git="hub"
 
-PATH="/Users/wbland/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/wbland/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/wbland/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/wbland/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/wbland/perl5"; export PERL_MM_OPT;
+# Turn off tmux integration with fuzzy finder
+export FZF_TMUX=0
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
