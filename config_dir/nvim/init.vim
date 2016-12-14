@@ -17,6 +17,7 @@ Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
+Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 filetype plugin indent on
@@ -172,3 +173,8 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " Close
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+" Chromatica
+let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:chromatica#enable_at_startup=1
+let g:chromatica#highlight_feature_level=2
+let g:chromatica#responsive_mode=1
