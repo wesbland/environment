@@ -9,3 +9,4 @@ ln -s -f $PWD/vim/vimrc $HOME/.nvimrc
 ln -s -f $PWD/screenrc $HOME/.screenrc
 ln -s -f $PWD/tmux.conf $HOME/.tmux.conf
 ln -s -f $PWD/bash_completion $HOME/.bash_completion
+ln -s -f $PWD/config_dir $HOME/.config

@@ -208,7 +208,7 @@
     " Update and reset the cscope tags
     nmap <leader>c :update_cscope<CR>
         \:cs reset<CR>
-    cs add $CSCOPE_DB
+    "cs add $CSCOPE_DB
 
     " Open man pages in splits instead of covering the window
     let $GROFF_NO_SGR=1
