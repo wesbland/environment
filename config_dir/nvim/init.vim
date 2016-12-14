@@ -13,12 +13,16 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'wesbland/cscope.nvim'
 Plug 'neomake/neomake'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'majutsushi/tagbar'
+Plug 'morhetz/gruvbox'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
 call plug#end()
 
 filetype plugin indent on
 
-colorscheme monokai
+colorscheme gruvbox
+set termguicolors
 
 " Turn on airline
 set laststatus=2
@@ -40,6 +44,7 @@ set foldmethod=syntax		" Use syntax defined folding
 autocmd BufWinEnter * silent! :%foldopen! " Open all folds by default
 let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
 set showtabline=2
+set bg=dark
 
 set nowrap			" Turn off line wrapping on long lines
 set autoindent			" Indent at the same level as previous lines
@@ -129,6 +134,20 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
 
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Map to CTRL-P
+nnoremap <silent> <c-p> :call fzf#run({ 'sink': 'e' })<CR>
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " Path to store the cscope files
 let g:cscope_dir = '~/.nvim-cscope'
 " Map default keys on startup
@@ -139,52 +158,17 @@ let g:cscope_update_on_start = 1
 let g:cscope_config = '.cscope.cfg'
 autocmd VimEnter * CScopeStart
 
-"let g:neomake_cpp_gcc_maker = {
-"    \ 'exe': '/opt/rh/devtoolset-4/root/usr/bin/gcc',
-"    \ 'args': ['-Wall',
-"             \ '-c',
-"             \ '-DHVAE_CONFIG_H',
-"             \ '-DMPIDI_POSIX_USE_LOCK_FREE_QUEUES',
-"             \ '-DSHM_DIRECT=__shm_direct_posix__',
-"             \ '-DNETMOD_DIRECT=__netmod_direct_ofi__',
-"             \ '-DNETMOD_DISABLE_INLINES',
-"             \ '-D_REENTRANT',
-"             \ '-fPIC',
-"             \ '-DPIC',
-"             \ '-I.',
-"             \ '-I./include',
-"             \ '-I./src/include',
-"             \ '-I./src/mpi/datatype',
-"             \ '-I./src/mpi/spawn',
-"             \ '-I./src/mpi/romio/include',
-"             \ '-I./src/mpid/include',
-"             \ '-I./src/mpid/ch4/include',
-"             \ '-I./src/mpid/ch4/netmod/include',
-"             \ '-I./src/mpid/ch4/netmod/ofi',
-"             \ '-I./src/mpl/include/',
-"             \ '-I./src/openpa/src',
-"             \ '-I./src/mpid/common/datatype/',
-"             \ '-I./src/mpid/common/thread/',
-"             \ '-I./src/mpid/common/sched/',
-"             \ '-I./src/mpid/common/shm/',
-"             \ '-I./src/mpid/common/timers/',
-"             \ '-I./src/mpid/ch4/shm/include/',
-"             \ '-I./src/mpid/ch4/src/',
-"             \ '-I./src/mpid/ch4/generic/',
-"             \ '-I./src/util/nodemap/',
-"             \ '-I./src/util/procmap/',
-"             \ '-I./src/util/logging/common/',
-"             \ '-I./src/util/mem/',
-"             \ '-I./src/util/wrappers/',
-"             \ '-I./src/binding/cxx/',
-"             \ '-I./src/binding/fortran/',
-"             \ '-I./src/binding/fortran/use_mpi',
-"             \ '-I./src/pmi/simple/',
-"             \ '-include','netmod_direct.h',
-"        \ ],
-"    \ }
-
 let g:neomake_open_list = 2
 autocmd! BufWritePost * Neomake
 "let g:neomake_verbose=3
 "let g:neomake_logfile='/tmp/error.log'
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/8.0.0/include/'
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " Close scratch on completion
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
