@@ -19,7 +19,7 @@
 [core]
     whitespace = trailing-space,space-before-tab,indent-with-tab
     abbrev = 12
-	excludesfile = /home/wbland/.gitignore
+	excludesfile = /Users/wbland/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [pull]
