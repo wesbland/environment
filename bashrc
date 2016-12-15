@@ -54,7 +54,7 @@ else
     fi
 
     source "$HOME/.dotfiles/git-prompt.sh"
-    source "$HOME/.dotfiles/bash_completion/git-completion.bash"
+    source "$HOME/.bash_completion.d/git-completion.bash"
 
     if [ -f /opt/intel/csr/etc/hub.bash_completion.sh ]; then
         . /opt/intel/csr/etc/hub.bash_completion.sh
