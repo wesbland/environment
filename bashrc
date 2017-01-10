@@ -49,6 +49,8 @@ if [ "$(uname)" == "Darwin" ]; then
     PERL_MB_OPT="--install_base \"/Users/wbland/perl5\""; export PERL_MB_OPT;
     PERL_MM_OPT="INSTALL_BASE=/Users/wbland/perl5"; export PERL_MM_OPT;
 else
+    source /opt/rh/devtoolset-4/enable
+
     if [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
     fi
@@ -74,8 +76,6 @@ else
     export HTTPS_PROXY=$INTEL_HTTPS_PROXY
     export https_proxy=$INTEL_HTTPS_PROXY
     export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
-
-    source /opt/rh/devtoolset-4/enable
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1

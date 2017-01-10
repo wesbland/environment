@@ -15,9 +15,15 @@ Plug 'wesbland/cscope.nvim'
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
-Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'raimondi/delimitmate'
+Plug 'nathanaelkane/vim-indent-guides'
+
+if has('mac')
+    Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-clang'
+endif
+
 call plug#end()
 
 filetype plugin indent on
@@ -32,6 +38,8 @@ let g:airline#extensions#whitespace#enabled=0 " Turn of the mixed indent section
 let g:airline#extensions#whitespace#trailing_format='t[%s]' " Shorten the mixed indent section
 let g:airline#extensions#whitespace#mixed_indent_format='m[%s]' " Shorten the mixed indent section
 let g:airline_section_y='' " Turn off the section with the encoding
+let g:airline#extensions#tabline#buffer_min_count=2
+let g:airline#extensions#tabline#enabled = 1
 
 set exrc                " Allow directory specific .nvimrc files
 set nu                  " Line numbers on
