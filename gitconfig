@@ -17,9 +17,9 @@
 
 # optional, but allows git to create 8-character abbreviated hashes, that are "trac-compatible" for automatic link generation in the comments.
 [core]
-    whitespace = trailing-space,space-before-tab,indent-with-tab
+	whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent
     abbrev = 12
-	excludesfile = /Users/wbland/.gitignore_global
+	excludesfile = /home/wbland/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [pull]
@@ -256,4 +256,4 @@
 [github]
     user = wesbland
 [credential]
-    helper = osxkeychain
+	helper = store

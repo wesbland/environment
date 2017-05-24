@@ -71,18 +71,21 @@ else
     INTEL_PROXY='http://proxy-chain.intel.com:911'
     INTEL_HTTPS_PROXY='https://proxy-chain.intel.com:912'
     export {http,ftp,socks,all,npm_config,npm_config_https}_proxy=$INTEL_PROXY
-    export {HTTP,FTP,SOCKS,ALL}_proxy=$INTEL_PROXY
-    export {HTTP,FTP,SOCKS,ALL}_PROXY=$INTEL_PROXY
+    export {HTTP,FTP,SOCKS,RSYNC,ALL}_proxy=$INTEL_PROXY
+    export {HTTP,FTP,SOCKS,RSYNC,ALL}_PROXY=$INTEL_PROXY
     export HTTPS_PROXY=$INTEL_HTTPS_PROXY
     export https_proxy=$INTEL_HTTPS_PROXY
     export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+
+    #export PATH="$HOME/.linuxbrew/bin:$PATH"
+    #export XDG_DATA_DIRS="/home/wbland/.linuxbrew/share:$XDG_DATA_DIRS"
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\$\[\033[00m\] '
 
 alias update_cscope="pushd $HOME; \
-    find $HOME/code \( \( -name install \) -prune \) -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.cpp \) -print > cscope.files ; \
+    find $HOME/code \( \( -name install \) -prune \) -o \( -name *.h.in -o -name *.h -o -name *.c -o -name *.c.in -o -name *.cpp \) -print > cscope.files ; \
     cscope -R -b -f $HOME/.cscope.out ; \
     rm -f cscope.files; \
     popd"
@@ -92,6 +95,7 @@ export CSCOPE_DB=$HOME/.cscope.out
 # MPICH Debugging information
 alias mpich_debug_on='export MPICH_DBG_FILENAME="log/dbg-%w-%d.log" ; export MPICH_DBG_CLASS=ALL ; export MPICH_DBG_LEVEL=VERBOSE'
 alias mpich_debug_off='unset MPICH_DBG_FILENAME ; unset MPICH_DBG_CLASS ; unset MPICH_DBG_LEVEL'
+export MPIR_CVAR_ODD_EVEN_CLIQUES=1
 
 #if [ -f /opt/intel/cc/15.0.090/bin/iccvars.sh ]; then
 #    source /opt/intel/cc/15.0.090/bin/iccvars.sh intel64

@@ -11,7 +11,7 @@ Plug 'sickill/vim-monokai'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'wesbland/cscope.nvim'
+Plug 'wesbland/cscope.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
@@ -38,11 +38,12 @@ let g:airline#extensions#whitespace#enabled=0 " Turn of the mixed indent section
 let g:airline#extensions#whitespace#trailing_format='t[%s]' " Shorten the mixed indent section
 let g:airline#extensions#whitespace#mixed_indent_format='m[%s]' " Shorten the mixed indent section
 let g:airline_section_y='' " Turn off the section with the encoding
-let g:airline#extensions#tabline#buffer_min_count=2
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#buffer_min_count=2
+"let g:airline#extensions#tabline#enabled = 1
 
 set exrc                " Allow directory specific .nvimrc files
-set nu                  " Line numbers on
+set relativenumber      " Turn on relative numbering for all lines but the current
+set number              " Turn on absolute numbering for the current line
 set showmatch 			" Show matching brackets/parens
 set incsearch			" Find as you type search
 set hlsearch			" Highlight search terms
@@ -51,7 +52,7 @@ set smartcase			" Case sensitive when uc present
 set whichwrap=b,s,h,l,<,>,[,]	" Set characters to wrap to
 set foldmethod=syntax		" Use syntax defined folding
 autocmd BufWinEnter * silent! :%foldopen! " Open all folds by default
-let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
+"let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
 set showtabline=2
 set bg=dark
 
@@ -94,9 +95,13 @@ map W  :wq<CR>
 map Q  :q<CR>
 
 " Update and reset the cscope tags
-nmap <leader>c :update_cscope<CR>
-			\:cs reset<CR>
-cs add $CSCOPE_DB
+"set cst
+"set csto=0
+"nmap <leader>c :update_cscope<CR>
+"			\:cs reset<CR>
+"if $CSCOPE_DB != ""
+"    cs add $CSCOPE_DB
+"endif
 
 " Turn on TagBar with \l
 nnoremap <leader>l :TagbarToggle<CR><Paste>
@@ -171,6 +176,15 @@ let g:neomake_open_list = 2
 autocmd! BufWritePost * Neomake
 "let g:neomake_verbose=3
 "let g:neomake_logfile='/tmp/error.log'
+function! LocationNext()
+  try
+    lnext
+  catch
+    try | lfirst | catch | endtry
+  endtry
+endfunction
+
+nnoremap <leader>e :call LocationNext()<cr>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
