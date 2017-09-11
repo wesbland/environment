@@ -17,6 +17,7 @@ Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
 Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'zhou13/vim-easyescape'
 
 if has('mac')
     Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -55,6 +56,7 @@ autocmd BufWinEnter * silent! :%foldopen! " Open all folds by default
 "let mysyntaxfile="$HOME/.vim/mysyntax/mpich3.1.vim" " Turn on syntax highlighting for MPI
 set showtabline=2
 set bg=dark
+if has('mouse') | set mouse=a | endif
 
 set nowrap			" Turn off line wrapping on long lines
 set autoindent			" Indent at the same level as previous lines
@@ -93,6 +95,12 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Shortcuts for saving and closing
 map W  :wq<CR>
 map Q  :q<CR>
+
+" Map jk to escape (quit insert mode)
+let g:easyescape_chars = { "j": 1, "k": 1 }
+let g:easyescape_timeout = 100
+cnoremap jk <ESC>
+cnoremap kj <ESC><Paste>
 
 " Update and reset the cscope tags
 "set cst
@@ -153,6 +161,8 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
+nmap <silent> <leader>t :Tags<CR>
+
 " Map to CTRL-P
 nnoremap <silent> <c-p> :call fzf#run({ 'sink': 'e' })<CR>
 
@@ -172,7 +182,7 @@ let g:cscope_update_on_start = 1
 let g:cscope_config = '.cscope.cfg'
 autocmd VimEnter * CScopeStart
 
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 autocmd! BufWritePost * Neomake
 "let g:neomake_verbose=3
 "let g:neomake_logfile='/tmp/error.log'
