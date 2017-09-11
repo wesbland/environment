@@ -18,12 +18,9 @@ Plug 'morhetz/gruvbox'
 Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'zhou13/vim-easyescape'
-
-if has('mac')
-    Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-clang'
-endif
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
+Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -197,16 +194,25 @@ endfunction
 nnoremap <leader>e :call LocationNext()<cr>
 
 " Deoplete
+if has("mac")
+    let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+    let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/'
+else
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib64/llvm/libclang.so'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+endif
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/8.0.0/include/'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " Close scratch on completion
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Chromatica
-let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+if has("mac")
+    let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+else
+    let g:chromatica#libclang_path='/usr/lib64/llvm/libclang.so'
+endif
 let g:chromatica#enable_at_startup=1
-let g:chromatica#highlight_feature_level=2
+let g:chromatica#highlight_feature_level=1
 let g:chromatica#responsive_mode=1
